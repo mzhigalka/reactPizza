@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import PizzaBlock from "./components/PizzaBlock";
-//Broke all the code into separate components 28:57
 
 function App() {
   return (
