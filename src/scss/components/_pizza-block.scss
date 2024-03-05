@@ -41,6 +41,13 @@
         cursor: pointer;
         font-weight: 600;
         font-size: 14px;
+        transition: all .4s ease;
+        
+        &:hover{
+          background-color: darken(#ededed, 2%);
+          border-radius: 5px;
+        }
+
         @include noselect();
         &.active {
           background: #ffffff;
