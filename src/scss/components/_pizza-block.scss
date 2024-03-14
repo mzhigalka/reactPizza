@@ -1,16 +1,22 @@
-@import '../variables';
+@import "../variables";
 
 .pizza-block {
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
 
-  &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
+  &__wrapper {
+    display: flex;
+    justify-content: center;
   }
 
   &__image {
     width: 260px;
+    transition: transform 0.3s ease;
+  }
+
+  &__image:hover {
+    transform: scale(1.07);
   }
 
   &__title {
@@ -41,9 +47,9 @@
         cursor: pointer;
         font-weight: 600;
         font-size: 14px;
-        transition: all .4s ease;
-        
-        &:hover{
+        transition: all 0.4s ease;
+
+        &:hover {
           background-color: darken(#ededed, 2%);
           border-radius: 5px;
         }
