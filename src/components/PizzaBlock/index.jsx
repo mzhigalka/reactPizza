@@ -9,7 +9,7 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
   const animation = useSpring({
     opacity: 1,
     from: { opacity: 0 },
-    config: { duration: 800 },
+    config: { duration: 900 },
     // transform: "translateY(0%)",
     // from: { opacity: 0, transform: "translateY(100%)" },
     // config: { duration: 700, ease: "ease-in" },
