@@ -14,6 +14,12 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+
+  @media (max-width: 500px) {
+    margin: 30px auto;
+    width: calc(100vw - 60px);
+    border-radius: 20px;
+  }
 }
 
 .content {

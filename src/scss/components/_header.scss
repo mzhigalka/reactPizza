@@ -1,13 +1,23 @@
-@import '../variables';
+@import "../variables";
 
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
+  @media (max-width: 500px) {
+    padding: 20px 0;
+  }
+
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 500px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 0;
+    }
   }
 
   &__logo {
@@ -23,10 +33,20 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+
+      @media (max-width: 500px) {
+        text-align: center;
+      }
     }
 
     p {
       color: #7b7b7b;
+    }
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px 0;
     }
   }
 }
