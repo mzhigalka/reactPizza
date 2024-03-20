@@ -13,10 +13,14 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 970px) {
+      flex-direction: column;
+    }
+
     @media (max-width: 500px) {
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px 0;
+      gap: 10px 0;
     }
   }
 
