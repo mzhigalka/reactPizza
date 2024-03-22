@@ -12,11 +12,11 @@
 
   &__image {
     width: 260px;
-    transition: transform 0.3s ease;
+    transition: transform .2s ease;
   }
 
   &__image:hover {
-    transform: scale(1.07);
+    transform: scale(1.04);
   }
 
   &__title {
@@ -42,9 +42,9 @@
       }
 
       li {
+        cursor: pointer;
         padding: 8px;
         flex: 1;
-        cursor: pointer;
         font-weight: 600;
         font-size: 14px;
         transition: all 0.4s ease;
