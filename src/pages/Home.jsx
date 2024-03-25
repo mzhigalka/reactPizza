@@ -37,14 +37,17 @@ export const Home = () => {
     <Skeleton key={index} />
   ));
 
-  const pizzas = items
-    .filter((obj) => {
-      if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-        return true;
-      }
-      return false;
-    })
-    .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas =
+    items.length > 0
+      ? items
+          .filter((obj) => {
+            if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+              return true;
+            }
+            return false;
+          })
+          .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+      : [];
 
   return (
     <>
