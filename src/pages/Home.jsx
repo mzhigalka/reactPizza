@@ -7,23 +7,28 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 
 import { AppContext } from "../App";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryId } from "../redux/slices/filterSlice";
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filterSlice.categoryId);
+  const sortType = useSelector((state) => state.filterSlice.sort.sortProperty);
+
   const { searchValue } = React.useContext(AppContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState(0);
-  const [sortType, setSortType] = React.useState({
-    name: "популярности",
-    sortProperty: "rating",
-  });
+
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   React.useEffect(() => {
     setIsLoading(true);
     fetch(
       `https://f4e78433cae02a7d.mokky.dev/items?${
         categoryId > 0 ? `category=${categoryId}` : ""
-      }&sortBy=${sortType.sortProperty}`
+      }&sortBy=${sortType}`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -52,11 +57,8 @@ export const Home = () => {
   return (
     <>
       <div className="content__top">
-        <Categories
-          value={categoryId}
-          onClickCategory={(index) => setCategoryId(index)}
-        />
-        <Sort value={sortType} onChangeSort={(index) => setSortType(index)} />
+        <Categories value={categoryId} onClickCategory={onClickCategory} />
+        <Sort />
       </div>
       <div className="content__bottom">
         <h2 className="content__title">Все пиццы</h2>
