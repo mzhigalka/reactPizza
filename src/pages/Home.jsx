@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -25,16 +26,18 @@ export const Home = () => {
 
   React.useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://f4e78433cae02a7d.mokky.dev/items?${
-        categoryId > 0 ? `category=${categoryId}` : ""
-      }&sortBy=${sortType}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
+
+    axios
+      .get(
+        `https://f4e78433cae02a7d.mokky.dev/items?${
+          categoryId > 0 ? `category=${categoryId}` : ""
+        }&sortBy=${sortType}`
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryId, sortType]);
 
