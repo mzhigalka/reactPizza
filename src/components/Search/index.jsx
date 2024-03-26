@@ -5,10 +5,17 @@ import { AppContext } from "../../App";
 
 const Search = () => {
   const { searchValue, setSearchValue } = React.useContext(AppContext);
+  const inputRef = React.useRef();
+
+  const onClickClear = () => {
+    setSearchValue("");
+    inputRef.current.focus();
+  };
 
   return (
     <div className={styles.root}>
       <input
+        ref={inputRef}
         onChange={(e) => setSearchValue(e.target.value)}
         className={styles.input}
         placeholder="Поиск пиццы..."
@@ -18,7 +25,7 @@ const Search = () => {
       {searchValue && (
         <svg
           className={styles.clearIcon}
-          onClick={() => setSearchValue("")}
+          onClick={onClickClear}
           height="48"
           viewBox="0 0 48 48"
           width="48"
