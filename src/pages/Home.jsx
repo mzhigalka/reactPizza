@@ -10,7 +10,7 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 
 import { AppContext } from "../App";
 import { useSelector, useDispatch } from "react-redux";
-import { setCategoryId, setFilters } from "../redux/slices/filterSlice";
+import { setCategoryId, setFilters } from "../store/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
 
 export const Home = () => {

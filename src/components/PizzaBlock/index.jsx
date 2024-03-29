@@ -1,10 +1,36 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems } from "../../store/slices/cartSlice";
 
-export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+const typeNames = ["тонкое", "традиционное"];
+
+export default function PizzaBlock({
+  id,
+  title,
+  price,
+  imageUrl,
+  sizes,
+  types,
+}) {
+  const dispatch = useDispatch();
+  const { totalPrice, items } = useSelector((state) => state.cartSlice);
+
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
-  const typeNames = ["тонкое", "традиционное"];
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      type: typeNames[activeType],
+      size: activeSize,
+    };
+
+    dispatch(addItems(item));
+  };
 
   const animation = useSpring({
     opacity: 1,
@@ -47,7 +73,10 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
           </div>
           <div className="pizza-block__bottom">
             <div className="pizza-block__price">от {price} ₽</div>
-            <button className="button button--outline button--add">
+            <button
+              onClick={onClickAdd}
+              className="button button--outline button--add"
+            >
               <svg
                 width="12"
                 height="12"
