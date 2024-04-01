@@ -14,10 +14,13 @@ export default function PizzaBlock({
   types,
 }) {
   const dispatch = useDispatch();
-  const { totalPrice, items } = useSelector((state) => state.cartSlice);
-
+  const cartItem = useSelector((state) =>
+    state.cartSlice.items.find((obj) => obj.id === id)
+  );
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
+
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
     const item = {
@@ -90,7 +93,7 @@ export default function PizzaBlock({
                 />
               </svg>
               <span>Добавить</span>
-              <i>0</i>
+              {addedCount > 0 && <i>{addedCount}</i>}
             </button>
           </div>
         </div>
