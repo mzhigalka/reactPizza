@@ -30,19 +30,24 @@ export const Home = () => {
     dispatch(setCategoryId(id));
   };
 
-  const fetchItems = () => {
+  const fetchItems = async () => {
     setIsLoading(true);
 
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `https://f4e78433cae02a7d.mokky.dev/items?${
           categoryId > 0 ? `category=${categoryId}` : ""
         }&sortBy=${sortType}`
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+      );
+      setItems(res.data);
+    } catch (error) {
+      console.warn(error);
+      alert("Error");
+    } finally {
+      setIsLoading(false);
+    }
+
+    window.scrollTo(0, 0);
   };
 
   // Если параметри и первый рендер изменились
@@ -76,8 +81,6 @@ export const Home = () => {
 
   // Если был первый ренде, то запрашиваем пиццы
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-
     if (!isSearch.current) {
       fetchItems();
     }

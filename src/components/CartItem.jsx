@@ -25,11 +25,11 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
     }
   };
 
-  // const onClickRemove = () => {
-  //   if (window.confirm("Ты действительно хочешь удалить товар ?")) {
-  //     dispatch(minusItem(id));
-  //   }
-  // };
+  const onClickRemove = () => {
+    if (window.confirm("Ты действительно хочешь удалить товар ?")) {
+      dispatch(removeItems(id));
+    }
+  };
 
   return (
     <div className="cart__item">
@@ -38,11 +38,12 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>{type}, {size} см.</p>
+        <p>
+          {type}, {size} см.
+        </p>
       </div>
       <div className="cart__item-count">
         <div
-          disabled
           onClick={onClickMinus}
           className="button button--outline button--circle cart__item-count-minus"
         >
@@ -91,10 +92,7 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
-      <div
-        //onClick={onClickRemove}
-        className="cart__item-remove"
-      >
+      <div onClick={onClickRemove} className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
             width="10"
