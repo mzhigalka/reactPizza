@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import qs from "qs";
 
 import Categories from "../components/Categories";
@@ -10,8 +9,9 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 
 import { AppContext } from "../App";
 import { useSelector, useDispatch } from "react-redux";
-import { setCategoryId, setFilters } from "../store/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
+import { setCategoryId, setFilters } from "../store/slices/filterSlice";
+import { fetchItems } from "../store/slices/itemsSlice";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -19,33 +19,23 @@ export const Home = () => {
 
   const categoryId = useSelector((state) => state.filterSlice.categoryId);
   const sortType = useSelector((state) => state.filterSlice.sort.sortProperty);
+  const { items, status } = useSelector((state) => state.itemsSlice);
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   const { searchValue } = React.useContext(AppContext);
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
   };
 
-  const fetchItems = async () => {
-    setIsLoading(true);
-
-    try {
-      const res = await axios.get(
-        `https://f4e78433cae02a7d.mokky.dev/items?${
-          categoryId > 0 ? `category=${categoryId}` : ""
-        }&sortBy=${sortType}`
-      );
-      setItems(res.data);
-    } catch (error) {
-      console.warn(error);
-      alert("Error");
-    } finally {
-      setIsLoading(false);
-    }
+  const getItems = async () => {
+    dispatch(
+      fetchItems({
+        categoryId,
+        sortType,
+      })
+    );
 
     window.scrollTo(0, 0);
   };
@@ -82,7 +72,7 @@ export const Home = () => {
   // Если был первый ренде, то запрашиваем пиццы
   React.useEffect(() => {
     if (!isSearch.current) {
-      fetchItems();
+      getItems();
     }
 
     isSearch.current = false;
@@ -112,7 +102,19 @@ export const Home = () => {
       </div>
       <div className="content__bottom">
         <h2 className="content__title">Все пиццы</h2>
-        <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+        {status === "error" ? (
+          <div className="content__error-info">
+            <h2>Произошла ошибка 😕</h2>
+            <p>
+              К сожалению, не удалось получить пиццы. Попробуйте повторить
+              попытку позже.
+            </p>
+          </div>
+        ) : (
+          <div className="content__items">
+            {status === "loading" ? skeletons : pizzas}
+          </div>
+        )}
       </div>
       {/* <Pagination /> */}
     </>
