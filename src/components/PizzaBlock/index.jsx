@@ -48,7 +48,7 @@ export default function PizzaBlock({
     <animated.div style={animation}>
       <div className="pizza-block__wrapper">
         <div className="pizza-block" style={{}}>
-          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+          <img className="pizza-block__image" src={imageUrl} alt={title} />
           <h4 className="pizza-block__title">{title}</h4>
           <div className="pizza-block__selector">
             <ul>
