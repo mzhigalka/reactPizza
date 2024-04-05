@@ -7,7 +7,6 @@ import Search from "./Search";
 export default function Header() {
   const { totalPrice, items } = useSelector((state) => state.cartSlice);
   const location = useLocation();
-  console.log(location);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
