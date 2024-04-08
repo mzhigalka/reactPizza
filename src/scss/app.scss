@@ -107,6 +107,35 @@ body {
   }
 }
 
+.full--pizza {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+  min-height: 600px;
+  gap: 0 30px;
+  align-items: center;
+
+  &__content {
+    width: 300px;
+    margin-bottom: 20px;
+
+    h2 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
 .cart {
   &__top {
     display: flex;

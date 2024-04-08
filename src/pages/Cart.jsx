@@ -23,7 +23,7 @@ const Cart = () => {
 
   return (
     <div className="container container--cart" style={{ minHeight: "900px" }}>
-     <div className="cart">
+      <div className="cart">
         <div className="cart__top">
           <h2 className="content__title">
             <svg
@@ -142,7 +142,7 @@ const Cart = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

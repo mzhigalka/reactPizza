@@ -1,18 +1,44 @@
 import React from "react";
+import axios from "axios";
+
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FullPizza = () => {
-  const params = useParams();
+  const { id } = useParams();
+  const [pizza, setPizza] = React.useState();
+
+  React.useEffect(() => {
+    async function fetchPizza() {
+      try {
+        const { data } = await axios.get(
+          "https://f4e78433cae02a7d.mokky.dev/items/" + id
+        );
+        setPizza(data);
+      } catch (error) {
+        console.warn(error);
+        alert("Ошибка при получении пиццы !");
+      }
+    }
+
+    fetchPizza();
+  }, []);
+
+  if (!pizza) {
+    return "";
+  }
 
   return (
-    <div className="container">
-      <img src="" alt="Pizza" />
-      <h2>222</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid cum
-        nam, laboriosam sed quae obcaecati.
-      </p>
-      <h4>111</h4>
+    <div className="container full--pizza">
+      <img src={pizza.imageUrl} width={400} height={400} alt="Pizza" />
+      <div className="full--pizza__content">
+        <h2>{pizza.title}</h2>
+        <p>{pizza.description}</p>
+        <h4>{pizza.price} ₽</h4>
+        <Link to="/" className="button button--outline button--add go-back-btn">
+          <span>Вернуться назад</span>
+        </Link>
+      </div>
     </div>
   );
 };
