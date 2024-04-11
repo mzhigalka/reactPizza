@@ -4,6 +4,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import Loading from "../components/Loading";
+
 const FullPizza = () => {
   const [pizza, setPizza] = React.useState();
   const { id } = useParams();
@@ -27,7 +29,7 @@ const FullPizza = () => {
   }, []);
 
   if (!pizza) {
-    return "";
+    return <Loading />;
   }
 
   return (

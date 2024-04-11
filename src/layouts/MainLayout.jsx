@@ -13,5 +13,5 @@ const MainLayout = () => {
     </div>
   );
 };
-//added layouts and Outlet
+
 export default MainLayout;

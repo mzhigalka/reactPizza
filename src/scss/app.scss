@@ -115,6 +115,19 @@ body {
   gap: 0 30px;
   align-items: center;
 
+  &__loading {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      color: #7b7b7b;
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+    }
+  }
+
   &__content {
     width: 300px;
     margin-bottom: 20px;
