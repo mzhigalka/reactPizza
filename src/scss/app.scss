@@ -48,6 +48,10 @@ body {
 
   &__title {
     margin: 35px 0;
+
+    @media (max-width: 1070px) {
+      text-align: center;
+    }
   }
 
   &__items {
@@ -114,6 +118,37 @@ body {
   min-height: 600px;
   gap: 0 30px;
   align-items: center;
+
+  @media (max-width: 870px) {
+    flex-direction: column;
+    padding: 50px 0;
+    text-align: center;
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    padding: 25px 0;
+
+    img {
+      width: 250px;
+      height: 250px;
+    }
+
+    .full--pizza__content {
+      p {
+        font-size: 16px;
+        padding: 0px 20px;
+      }
+    }
+  }
 
   &__loading {
     min-height: 600px;
