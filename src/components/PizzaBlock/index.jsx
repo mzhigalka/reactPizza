@@ -52,7 +52,8 @@ export default function PizzaBlock({
         <div className="pizza-block" style={{}}>
           <Link to={`/pizza/${id}`}>
             <img className="pizza-block__image" src={imageUrl} alt={title} />
-            <h4 className="pizza-block__title">{title}</h4>
+            {/* <h4 className="pizza-block__title">{title}</h4> */}
+            {title && <h4 className="pizza-block__title">{title}</h4>}
           </Link>
           <div className="pizza-block__selector">
             <ul>

@@ -7,7 +7,6 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
   const item = useSelector((state) =>
     state.cartSlice.items.find((obj) => obj.count)
   );
-  console.log(item.count);
 
   const onClickPlus = () => {
     dispatch(

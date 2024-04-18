@@ -7,7 +7,6 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 // import Pagination from "../components/Pagination";
 
-import { AppContext } from "../App";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCategoryId, setFilters } from "../store/slices/filterSlice";
@@ -17,13 +16,16 @@ export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const categoryId = useSelector((state) => state.filterSlice.categoryId);
-  const sortType = useSelector((state) => state.filterSlice.sort.sortProperty);
+  const {
+    categoryId,
+    sort: { sortProperty: sortType },
+    searchValue,
+  } = useSelector((state) => state.filterSlice);
+
   const { items, status } = useSelector((state) => state.itemsSlice);
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
-  const { searchValue } = React.useContext(AppContext);
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -107,7 +109,7 @@ export const Home = () => {
             <h2>Произошла ошибка 😕</h2>
             <p>
               К сожалению, не удалось получить пиццы. Попробуйте повторить
-              попытку позже.
+              попытку позже.А
             </p>
           </div>
         ) : (

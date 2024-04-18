@@ -1,28 +1,36 @@
 import React from "react";
 import styles from "./Search.module.scss";
 
-import { AppContext } from "../../App";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../../store/slices/filterSlice";
 
 const Search = () => {
-  const { searchValue, setSearchValue } = React.useContext(AppContext);
   const inputRef = React.useRef();
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState("");
 
   const onClickClear = () => {
-    setSearchValue("");
+    dispatch(setSearchValue(""));
+    setValue("");
     inputRef.current.focus();
+  };
+
+  const onChangeInput = (e) => {
+    setValue(e.target.value);
+    dispatch(setSearchValue(e.target.value));
   };
 
   return (
     <div className={styles.root}>
       <input
         ref={inputRef}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={onChangeInput}
         className={styles.input}
         placeholder="Поиск пиццы..."
         type="text"
-        value={searchValue}
+        value={value}
       />
-      {searchValue && (
+      {value && (
         <svg
           className={styles.clearIcon}
           onClick={onClickClear}
