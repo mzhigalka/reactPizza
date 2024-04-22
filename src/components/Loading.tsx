@@ -1,10 +1,10 @@
-import React from "react";
+import { FC } from "react";
 
-const Loading = () => {
+const Loading: FC = () => {
   return (
     <div className="full--pizza__loading">
       <svg
-        class="full--pizza__loading-icon"
+        className="full--pizza__loading-icon"
         fill="none"
         height="24"
         stroke="currentColor"

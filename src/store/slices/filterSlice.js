@@ -30,6 +30,7 @@ const filterSlice = createSlice({
 });
 
 export const selectFilter = (state) => state.filter;
+export const selectSort = (state) => state.filterSlice.sort;
 
 export const { setCategoryId, setSort, setFilters, setSearchValue } =
   filterSlice.actions;

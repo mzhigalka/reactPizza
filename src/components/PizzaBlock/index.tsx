@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
@@ -7,17 +7,26 @@ import { addItems } from "../../store/slices/cartSlice";
 
 const typeNames = ["тонкое", "традиционное"];
 
-export default function PizzaBlock({
+type PizzaBlockProps = {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+};
+
+const PizzaBlock: FC<PizzaBlockProps> = ({
   id,
   title,
   price,
   imageUrl,
   sizes,
   types,
-}) {
+}) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) =>
-    state.cartSlice.items.find((obj) => obj.id === id)
+  const cartItem = useSelector<any | undefined>((state) =>
+    state.cartSlice.items.find((obj: any) => obj.id === id)
   );
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
@@ -105,4 +114,6 @@ export default function PizzaBlock({
       </div>
     </animated.div>
   );
-}
+};
+
+export default PizzaBlock;
