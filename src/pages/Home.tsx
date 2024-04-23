@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import qs from "qs";
 
 import Categories from "../components/Categories";
@@ -9,10 +9,14 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setCategoryId, setFilters } from "../store/slices/filterSlice";
-import { fetchItems } from "../store/slices/itemsSlice";
+import {
+  setCategoryId,
+  setFilters,
+  selectFilter,
+} from "../store/slices/filterSlice";
+import { fetchItems, selectItems } from "../store/slices/itemsSlice";
 
-export const Home = () => {
+const Home: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,19 +24,20 @@ export const Home = () => {
     categoryId,
     sort: { sortProperty: sortType },
     searchValue,
-  } = useSelector((state) => state.filterSlice);
+  } = useSelector(selectFilter);
 
-  const { items, status } = useSelector((state) => state.itemsSlice);
+  const { items, status } = useSelector(selectItems);
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const onClickCategory = (id) => {
+  const onClickCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
   const getItems = async () => {
     dispatch(
+      //@ts-ignore
       fetchItems({
         categoryId,
         sortType,
@@ -87,13 +92,13 @@ export const Home = () => {
   const pizzas =
     items.length > 0
       ? items
-          .filter((obj) => {
+          .filter((obj: any) => {
             if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
               return true;
             }
             return false;
           })
-          .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+          .map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)
       : [];
 
   return (

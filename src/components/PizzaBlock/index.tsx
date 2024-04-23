@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
-import { addItems } from "../../store/slices/cartSlice";
+import { addItems, selectCartItemById } from "../../store/slices/cartSlice";
 
 const typeNames = ["тонкое", "традиционное"];
 
@@ -25,9 +25,7 @@ const PizzaBlock: FC<PizzaBlockProps> = ({
   types,
 }) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector<any | undefined>((state) =>
-    state.cartSlice.items.find((obj: any) => obj.id === id)
-  );
+  const cartItem = useSelector(selectCartItemById(id));
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
@@ -61,7 +59,6 @@ const PizzaBlock: FC<PizzaBlockProps> = ({
         <div className="pizza-block" style={{}}>
           <Link to={`/pizza/${id}`}>
             <img className="pizza-block__image" src={imageUrl} alt={title} />
-            {/* <h4 className="pizza-block__title">{title}</h4> */}
             {title && <h4 className="pizza-block__title">{title}</h4>}
           </Link>
           <div className="pizza-block__selector">
