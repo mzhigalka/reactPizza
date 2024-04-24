@@ -28,8 +28,12 @@ export default function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as MouseEvent & {
+        composedPath: () => Node[];
+      };
+
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setIsVisiblePopup(false);
       }
     };
