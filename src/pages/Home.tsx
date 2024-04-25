@@ -7,18 +7,24 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 // import Pagination from "../components/Pagination";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   setCategoryId,
   setFilters,
   selectFilter,
+  FilteSliceState,
 } from "../store/slices/filterSlice";
-import { fetchItems, selectItems } from "../store/slices/itemsSlice";
+import {
+  FetchItemsArgs,
+  fetchItems,
+  selectItems,
+} from "../store/slices/itemsSlice";
+import { useAppDispatch } from "../store/store";
 
 const Home: FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     categoryId,
@@ -36,11 +42,12 @@ const Home: FC = () => {
   };
 
   const getItems = async () => {
+    const search = searchValue;
     dispatch(
-      //@ts-ignore
       fetchItems({
         categoryId,
         sortType,
+        search,
       })
     );
 
@@ -63,16 +70,20 @@ const Home: FC = () => {
   // Первый рендер, проверка URL-параметров и сохраняем в Redux
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const params = qs.parse(
+        window.location.search.substring(1)
+      ) as unknown as FetchItemsArgs;
+      const sort = list.find((obj) => obj.sortProperty === params.sortType);
 
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          searchValue: params.search,
+          categoryId: params.categoryId,
+          sort: sort || list[0],
         })
       );
-      isSearch.current = true;
+
+      isMounted.current = true;
     }
   }, []);
 

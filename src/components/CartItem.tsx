@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {
+  CartItem,
   addItems,
   minusItem,
   removeItems,
@@ -17,7 +18,7 @@ type CartItemProps = {
   imageUrl: string;
 };
 
-const CartItem: FC<CartItemProps> = ({
+const CartItemBlock: FC<CartItemProps> = ({
   id,
   title,
   type,
@@ -33,15 +34,17 @@ const CartItem: FC<CartItemProps> = ({
     dispatch(
       addItems({
         id,
-      })
+      } as CartItem)
     );
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem(id));
+    if (item) {
+      dispatch(minusItem(id));
 
-    if (item.count <= 1) {
-      dispatch(removeItems(id));
+      if (item.count <= 1) {
+        dispatch(removeItems(id));
+      }
     }
   };
 
@@ -136,4 +139,4 @@ const CartItem: FC<CartItemProps> = ({
   );
 };
 
-export default CartItem;
+export default CartItemBlock;
