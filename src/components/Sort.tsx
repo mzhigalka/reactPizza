@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSort,
@@ -34,7 +34,7 @@ export const list: SortItem[] = [
   },
 ];
 
-export default function Sort() {
+const Sort: FC = React.memo(() => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -101,4 +101,6 @@ export default function Sort() {
       )}
     </div>
   );
-}
+});
+
+export default Sort;
