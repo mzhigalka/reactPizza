@@ -296,6 +296,7 @@ body {
         }
 
         &--disabled {
+          cursor: default;
           opacity: 0.2;
           border-color: #777777;
 
