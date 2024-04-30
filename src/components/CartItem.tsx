@@ -1,13 +1,10 @@
 import { FC } from "react";
-import {
-  CartItem,
-  addItems,
-  minusItem,
-  removeItems,
-  selectItem,
-} from "../store/slices/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectItem } from "../store/cart/selectors";
+import { addItems, minusItem, removeItems } from "../store/cart/slice";
+import { CartItem } from "../store/cart/types";
 
 type CartItemProps = {
   id: number;

@@ -1,4 +1,4 @@
-import { CartItem } from "../store/slices/cartSlice";
+import { CartItem } from "../store/cart/types";
 
 export const calcTotalPrice = (items: CartItem[]) => {
   return items.reduce((sum, obj) => obj.price * obj.count + sum, 0);

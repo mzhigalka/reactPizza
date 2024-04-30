@@ -1,4 +1,3 @@
-import { log } from "console";
 import { FC } from "react";
 import React from "react";
 

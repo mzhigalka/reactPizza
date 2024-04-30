@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styles from "./Search.module.scss";
 
 import { useDispatch } from "react-redux";
-import { setSearchValue } from "../../store/slices/filterSlice";
+import { setSearchValue } from "../../store/filter/slice";
 
 const Search: FC = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);

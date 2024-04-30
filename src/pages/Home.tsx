@@ -9,18 +9,13 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  setCategoryId,
-  setFilters,
-  selectFilter,
-  FilteSliceState,
-} from "../store/slices/filterSlice";
-import {
-  FetchItemsArgs,
-  fetchItems,
-  selectItems,
-} from "../store/slices/itemsSlice";
+import { setCategoryId, setFilters } from "../store/filter/slice";
+
 import { useAppDispatch } from "../store/store";
+import { selectFilter } from "../store/filter/selectors";
+import { selectItems } from "../store/items/selectors";
+import { fetchItems } from "../store/items/asyncActions";
+import { FetchItemsArgs } from "../store/items/types";
 
 const Home: FC = () => {
   const navigate = useNavigate();

@@ -3,11 +3,9 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CartItem,
-  addItems,
-  selectCartItemById,
-} from "../../store/slices/cartSlice";
+import { selectCartItemById } from "../../store/cart/selectors";
+import { addItems } from "../../store/cart/slice";
+import { CartItem } from "../../store/cart/types";
 
 const typeNames = ["тонкое", "традиционное"];
 
