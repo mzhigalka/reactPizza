@@ -29,7 +29,11 @@ body {
     text-align: center;
     padding: 50px 0;
     margin: 60px auto;
-    width: 500px;
+    max-width: 500px;
+    //.pizza-block
+    @media (max-width: 670px) {
+      margin: 0px auto;
+    }
 
     h2 {
       font-size: 32px;
