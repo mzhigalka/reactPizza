@@ -14,7 +14,7 @@ const NotFound = React.lazy(
 );
 const FullPizza = React.lazy(
   () => import(/*webpackChunkName: "FullPizza"*/ "./pages/FullPizza")
-);
+); 
 
 function App() {
   return (
