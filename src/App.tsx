@@ -25,7 +25,7 @@ function App() {
           path="cart"
           element={
             <React.Suspense fallback={<Loading />}>
-              <Cart />
+              <Cart /> 
             </React.Suspense>
           }
         />
