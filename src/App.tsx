@@ -28,7 +28,7 @@ function App() {
               <Cart /> 
             </React.Suspense>
           }
-        />
+        /> 
         <Route
           path="pizza/:id"
           element={
