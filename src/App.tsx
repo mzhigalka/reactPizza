@@ -1,7 +1,7 @@
 import "./scss/app.scss";         
 import React from "react";        
 import { Routes, Route } from "react-router-dom"; 
-    
+     
 import Home from "./pages/Home";
 import Loading from "./components/Loading";
 import MainLayout from "./layouts/MainLayout";
