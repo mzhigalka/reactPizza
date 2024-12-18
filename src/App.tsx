@@ -16,7 +16,7 @@ const FullPizza = React.lazy(
   () => import(/*webpackChunkName: "FullPizza"*/ "./pages/FullPizza")
 );   
  
-function App() {
+function App() { 
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
