@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Loading from "./components/Loading";
 import MainLayout from "./layouts/MainLayout";
 
-const Cart = React.lazy(
+const Cart = React.lazy( 
   () => import(/*webpackChunkName: "Cart"*/ "./pages/Cart")
 );
 const NotFound = React.lazy(
