@@ -8,7 +8,7 @@ import MainLayout from "./layouts/MainLayout";
 
 const Cart = React.lazy( 
   () => import(/*webpackChunkName: "Cart"*/ "./pages/Cart")
-);
+); 
 const NotFound = React.lazy(
   () => import(/*webpackChunkName: "NotFound"*/ "./pages/NotFound")
 );
